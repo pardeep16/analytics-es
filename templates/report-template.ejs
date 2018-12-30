@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Analytics Report</title>
+
+	<style type="text/css">
+		/*#mytable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+ tr:nth-child(even){background-color: #f2f2f2;}
+
+ tr:hover {background-color: #ddd;}
+
+ th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}*/
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-left: 20px;
+  color: #4a4a4d;
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+th,
+td {
+  padding: 10px 15px;
+  vertical-align: middle;
+}
+thead {
+  background: #395870;
+  color: #fff;
+}
+th:first-child {
+  text-align: center;
+}
+tbody tr:nth-child(even) {
+  background: #f0f0f2;
+}
+td {
+  border-bottom: 1px solid #cecfd5;
+  border-right: 1px solid #cecfd5;
+  text-align: center;
+}
+td:first-child {
+  border-left: 1px solid #cecfd5;
+}
+/*.book-title {
+  color: #395870;
+  display: block;
+}
+.item-stock,
+.item-qty {text-align: center;
+}
+.item-price {
+  text-align: right;
+}
+.item-multiple {
+  display: block;
+}*/
+div.footer {
+    display: block; text-align: center;
+    position: running(footer);
+}
+@page {
+    @top-center { content: element(header) }
+}
+@page { 
+    @bottom-center { content: element(footer) }
+}
+tfoot {
+  text-align: right;
+}
+tfoot tr:last-child {
+  background: #f0f0f2;
+}
+
+@media print {
+    .page-break { display: block; page-break-before: always; }
+}
+	</style>
+</head>
+<body>
+<div >
+
+	<div style="margin-top: 150px;">
+		<center>
+			<h3 style="font: Arial, Helvetica, sans-serif">Insight Analytics & Monitoring</h3>
+			<h5 style="font: Arial, Helvetica, sans-serif">Dashboard Report</h5>
+
+		</center>
+		<div class="page-break"></div>
+	</div>
+	<% data.forEach(function(obj){ %>
+    <div>
+		<h3 style="margin-left:10px;">Visualization - <%= obj.title %></h3><br>
+		<ul>
+		<div>
+		<img src="<%=  obj.visPath %>" width="100%">
+		<!-- <div class='footer'>BT - MYSD Insight Analytics & Monitoring</div> -->
+		</div>
+		
+		<div>
+			<% if (obj.visData) { %>
+			<div class="page-break">
+			<h3 style="margin-left:10px;">Data Table - <%= obj.title %></h3><br>
+			<ul>
+  			<div><%- obj.visData %>
+  				<!-- <div class='footer'>BT - MYSD Insight Analytics & Monitoring</div> -->
+  			 </div>
+  			 </div>
+			<% } %>
+		</div>	
+	</div>
+  	<% }); %>	
+</div>
+</body>
+</html>
